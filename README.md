@@ -20,8 +20,10 @@ Das Skript klont fehlende Repositories auf `main` und aktualisiert vorhandene
 saubere `main`-Checkouts per Fast-forward. Es schützt lokale Arbeit und meldet
 unter anderem geänderte, divergierte oder auf einem anderen Branch stehende
 Checkouts als Fehler. Weitere ausgewählte Repositories werden trotzdem bearbeitet.
-Für ein neues Projekt den Namen in `repositories.txt` und das zu ignorierende
-Verzeichnis in `.gitignore` ergänzen.
+Für ein neues Projekt den Namen des `edigonzales`-Repositories mit Branch
+`main` in `repositories.txt` eintragen, einen Namen pro Zeile. Bindestriche
+trennen Gruppen aus Kleinbuchstaben und Ziffern. Das Verzeichnis in
+`.gitignore` ergänzen.
 
 ## Mit Codex arbeiten
 
@@ -39,6 +41,8 @@ auswählen. Du kannst sie auch ausdrücklich aufrufen.
   unnötiger Mechanismen und beim Vereinfachen verbleibender Funktionen.
 - [`$hop-functional-review`](.agents/skills/hop-functional-review/SKILL.md) prüft
   Hop-Plugins vom Dialog und den Metadaten bis zum Ergebnis in der Laufzeit.
+
+Beispielauftrag für mehrere Repositories
 
 > Nutze $radical-cleanup, um doppelte Packaging-Prüfungen in
 > hop-interlis-plugin und hop-plugin-ci zu untersuchen. Prüfe zuerst die
