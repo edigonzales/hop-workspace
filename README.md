@@ -1,67 +1,78 @@
 # hop-workspace
 
-Gemeinsamer Arbeitsbereich für die aktiven Apache-Hop-Plugins und ihre Helfer.
-Die [AGENTS.md](AGENTS.md) enthält die übergreifenden Arbeitsregeln und den
-Projektindex. [repositories.txt](repositories.txt) bestimmt den Checkout-Bestand.
+Gemeinsamer Einstiegspunkt für die Apache-Hop-Plugins und ihre Helfer.
+[repositories.txt](repositories.txt) bestimmt, welche Repositories zum Workspace
+gehören. Sie liegen direkt unter diesem Verzeichnis und sind vom Workspace-Git
+ignoriert. Jedes Repository verwaltet seinen eigenen Build, seine Commits und
+seine Pull Requests. Es gibt keine Git-Submodules und keinen Sammelbuild.
 
-## Repositories auschecken oder aktualisieren
+## Repositories bereitstellen
 
-Voraussetzungen: Git, Bash ab 3.2 und Zugriff auf GitHub. Das Skript benötigt
-keine weiteren Laufzeiten oder Pakete.
+`checkout.sh` benötigt Git, Bash ab 3.2 und Zugriff auf GitHub. Gib die benötigten
+Repositories an oder verwende den Aufruf ohne Argumente für die gesamte Liste.
 
 ```bash
-./checkout.sh
 ./checkout.sh hop-interlis-plugin hop-geometry-type-plugin
 ./checkout.sh --help
 ```
 
-Beim ersten Aufruf werden alle 23 Repositories von `edigonzales` über HTTPS auf
-`main` geklont. Sie liegen direkt unter diesem Workspace und bleiben eigenständige,
-hier ignorierte Git-Repositories. Es gibt keine Submodules. Bereits neben dem
-Workspace vorhandene Checkouts werden nicht verwendet. Das Skript funktioniert
-auch beim Aufruf über einen absoluten Pfad aus einem anderen Arbeitsverzeichnis.
+Das Skript klont fehlende Repositories auf `main` und aktualisiert vorhandene
+saubere `main`-Checkouts per Fast-forward. Es schützt lokale Arbeit und meldet
+unter anderem geänderte, divergierte oder auf einem anderen Branch stehende
+Checkouts als Fehler. Weitere ausgewählte Repositories werden trotzdem bearbeitet.
+Für ein neues Projekt den Namen des `edigonzales`-Repositories mit Branch
+`main` in `repositories.txt` eintragen, einen Namen pro Zeile. Bindestriche
+trennen Gruppen aus Kleinbuchstaben und Ziffern. Das Verzeichnis in
+`.gitignore` ergänzen.
 
-Weitere Aufrufe aktualisieren saubere `main`-Checkouts durch Fetch und
-Fast-forward. Lokale vorausliegende Commits bleiben erhalten. Lokale Änderungen,
-unversionierte Dateien, andere Branches, detached HEAD, divergierte Historien,
-abweichende Origins und belegte Zielpfade werden als Fehler gemeldet. Das Skript
-führt weder Stash noch Reset oder Branchwechsel aus. Für bestehende Checkouts
-sind HTTPS- und übliche SSH-Origin-URLs zum selben Repository zulässig.
+## Mit Codex arbeiten
 
-Nach einem Fehler werden die übrigen ausgewählten Repositories weiterbearbeitet.
-Exitcodes: `0` für Erfolg, `1` für Bearbeitungsfehler und `2` für ungültige Argumente
-oder eine ungültige Projektliste. Ein erneuter Aufruf kann fehlgeschlagene
-Checkouts nach Behebung der Ursache nachholen.
+Codex vorzugsweise in `hop-workspace/` starten. Die Root-[AGENTS.md](AGENTS.md)
+enthält die dauerhaften Arbeitsregeln. Lies vor Pluginänderungen auch die
+projektspezifischen Anweisungen. Benenne im Auftrag Ziele, betroffene Repositories
+und Abnahmebedingungen. Führe Git-Befehle im zuständigen Repository aus, zum
+Beispiel `git -C hop-interlis-plugin status --short --branch`. Für Änderungen
+an einem Plugin gehört der PR in dessen Repository.
 
-## Mit den Projekten arbeiten
+Codex kann die Workspace-Skills unter `.agents/skills/` passend zum Auftrag
+auswählen. Du kannst sie auch ausdrücklich aufrufen.
 
-Arbeiten am besten aus diesem Workspace beginnen und die Root-[AGENTS.md](AGENTS.md)
-sowie die Anweisungen des betroffenen Projekts lesen. Bei direktem Einstieg in ein
-Unterrepository die Workspace-`AGENTS.md` ausdrücklich als zusätzlichen Kontext
-einlesen; automatische Vererbung über Gitgrenzen ist nicht vorausgesetzt.
+- [`$radical-cleanup`](.agents/skills/radical-cleanup/SKILL.md) hilft beim Entfernen
+  unnötiger Mechanismen und beim Vereinfachen verbleibender Funktionen.
+- [`$hop-functional-review`](.agents/skills/hop-functional-review/SKILL.md) prüft
+  Hop-Plugins vom Dialog und den Metadaten bis zum Ergebnis in der Laufzeit.
 
-Build, Tests und Installation gehören in die jeweiligen Projekte. Es gibt keinen
-zentralen Sammelbuild. Der Bestand umfasst 16 Plugins und sieben Helfer inklusive
-Distribution und Website; ältere GDAL-/Form-Projekte, UI-Patch und leere Ansätze
-sind nicht aufgenommen.
+Beispielauftrag für mehrere Repositories
 
-## Ein Projekt ergänzen
+> Nutze $radical-cleanup, um doppelte Packaging-Prüfungen in
+> hop-interlis-plugin und hop-plugin-ci zu untersuchen. Prüfe zuerst die
+> Verbraucher und entferne nur nachweislich redundante Prüfungen.
+> Führe die betroffenen Projektchecks aus und halte die Diffs getrennt.
 
-1. Den aktuellen GitHub-Namen in `repositories.txt` ergänzen, einen Namen pro
-   Zeile, ohne URL, Kommentare oder Leerzeilen. Alle Einträge gehören zu
-   `edigonzales` und benötigen einen `main`-Branch.
-2. Das Verzeichnis als `/repository-name/` in `.gitignore` eintragen.
-3. Zweck und vorhandene Arbeitsanweisungen im Projektindex der `AGENTS.md` ergänzen.
-4. `./checkout.sh repository-name` ausführen.
+Codex ermittelt AGENTS-Dateien und Repository-Skills relativ zum aktuellen
+Git-Root. Starte für Workspace-Discovery im Workspace-Root. Wenn du direkt in
+einem Plugin startest, bitte Codex bei Bedarf ausdrücklich, `../AGENTS.md` und
+die passende `../.agents/skills/<name>/SKILL.md` zu lesen. [AGENTS.md-Discovery](https://learn.chatgpt.com/docs/agent-configuration/agents-md)
+und [Skill-Discovery](https://learn.chatgpt.com/docs/build-skills).
+
+### Codex Cloud
+
+Auch in Codex Cloud müssen `hop-workspace` und die für den Auftrag nötigen
+Unterrepositories beim Arbeitsbeginn in der erwarteten Verzeichnisstruktur
+verfügbar sein. Ein Checkout des Workspace-Repositories allein enthält die
+Plugins nicht. Wenn du sie über `checkout.sh` bereitstellst, muss die Umgebung
+GitHub erreichen können. Commits und PRs bleiben pro Repository getrennt.
+Der Start eines Cloud-Auftrags mit dieser Checkout-Struktur ist noch zu prüfen.
+[Codex-Cloud-Umgebungen](https://learn.chatgpt.com/docs/environments/cloud-environments).
 
 ## Workspace prüfen
 
-Für die Skripttests werden zusätzlich Python 3.9 oder neuer und Git benötigt.
-Sie arbeiten ausschliesslich mit temporären lokalen Repositories, ohne GitHub
-oder Änderungen an den echten Projekt-Checkouts und der globalen Git-Konfiguration.
+Die Skripttests benötigen Git und Python ab 3.9 und verwenden temporäre lokale
+Git-Repositories.
 
 ```bash
 bash -n checkout.sh
+./checkout.sh --help
 python3 -m unittest discover -s tests -v
 git diff --check
 ```
