@@ -32,6 +32,7 @@ braucht einen Fehler, den sie tatsächlich verhindert oder sichtbar macht.
 Doppelte Manifeste oder Nachweissysteme, rein kosmetische Prüfungen und Tests
 der eigenen Prüfinfrastruktur vermeiden. Prüfsummen und Fingerprints brauchen
 einen konkreten Zweck, etwa Artefaktintegrität oder sichere Strukturupdates.
+Zusätzliche Sicherheitsprüfungen brauchen einen realen Schutzbedarf.
 Gelöschte Infrastruktur nur ersetzen, wenn eine benötigte Funktion sonst entfällt.
 
 Fachliche Validierung, Datenintegrität, reale Sicherheitsgrenzen,
@@ -54,8 +55,10 @@ Logik und Dokumentation beim zuständigen Projekt pflegen. Überholte Anleitunge
 und Beispiele mit der betreffenden Funktion entfernen oder aktualisieren.
 Versionen, Buildbefehle und Pflichtchecks aus dem jeweiligen Projekt übernehmen.
 
-Wenige aussagekräftige Regressionstests für beobachtbares Verhalten bevorzugen.
-Bestehende relevante Abdeckung erhalten. Echte Pipeline-, Plugin- und
+Den Prüfumfang an der Änderung ausrichten. Wenige aussagekräftige
+Regressionstests für beobachtbares Verhalten bevorzugen und relevante
+Abdeckung erhalten. Feste Coverage-Quoten vermeiden. Eigene Testharnesses
+nur bei zwingendem Bedarf einführen. Echte Pipeline-, Plugin- und
 Integrationstests einsetzen, wenn die Änderung diese Grenzen berührt.
 Gemeinsame Laufzeittypen, native Bibliotheken und Classloader mit den
 erforderlichen Integrationsprüfungen absichern. Installierte Tests in einer
