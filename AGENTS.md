@@ -53,7 +53,11 @@ Deprecation-Schichten brauchen tatsächlich betroffene Verbraucher.
 Mit einer Bestandsaufnahme beginnen und in kleinen Schritten ändern. Gemeinsame
 Logik und Dokumentation beim zuständigen Projekt pflegen. Überholte Anleitungen
 und Beispiele mit der betreffenden Funktion entfernen oder aktualisieren.
-Versionen, Buildbefehle und Pflichtchecks aus dem jeweiligen Projekt übernehmen.
+Versionen und Buildbefehle aus dem jeweiligen Projekt übernehmen. Bestehende
+Projektregeln und Pflichtchecks zuerst verstehen. Bei ausdrücklich beauftragten
+Bereinigungen dürfen unnötige Checks, Konventionen, Kompatibilitätsschichten
+und ihre Infrastruktur vollständig entfallen. Fachlich und technisch
+erforderliche Prüfungen bleiben erhalten.
 
 Den Prüfumfang an der Änderung ausrichten. Wenige aussagekräftige
 Regressionstests für beobachtbares Verhalten bevorzugen und relevante

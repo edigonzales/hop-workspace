@@ -27,7 +27,8 @@ trennen Gruppen aus Kleinbuchstaben und Ziffern. Das Verzeichnis in
 
 ## Mit Codex arbeiten
 
-Codex vorzugsweise in `hop-workspace/` starten. Die Root-[AGENTS.md](AGENTS.md)
+Codex lokal in `hop-workspace/` starten. Unabhängige Reviews mit OpenCode
+lokal in einem separaten Worktree ausführen. Die Root-[AGENTS.md](AGENTS.md)
 enthält die dauerhaften Arbeitsregeln. Lies vor Pluginänderungen auch die
 projektspezifischen Anweisungen. Benenne im Auftrag Ziele, betroffene Repositories
 und Abnahmebedingungen. Führe Git-Befehle im zuständigen Repository aus, zum
@@ -54,16 +55,6 @@ Git-Root. Starte für Workspace-Discovery im Workspace-Root. Wenn du direkt in
 einem Plugin startest, bitte Codex bei Bedarf ausdrücklich, `../AGENTS.md` und
 die passende `../.agents/skills/<name>/SKILL.md` zu lesen. [AGENTS.md-Discovery](https://learn.chatgpt.com/docs/agent-configuration/agents-md)
 und [Skill-Discovery](https://learn.chatgpt.com/docs/build-skills).
-
-### Codex Cloud
-
-Auch in Codex Cloud müssen `hop-workspace` und die für den Auftrag nötigen
-Unterrepositories beim Arbeitsbeginn in der erwarteten Verzeichnisstruktur
-verfügbar sein. Ein Checkout des Workspace-Repositories allein enthält die
-Plugins nicht. Wenn du sie über `checkout.sh` bereitstellst, muss die Umgebung
-GitHub erreichen können. Commits und PRs bleiben pro Repository getrennt.
-Der Start eines Cloud-Auftrags mit dieser Checkout-Struktur ist noch zu prüfen.
-[Codex-Cloud-Umgebungen](https://learn.chatgpt.com/docs/environments/cloud-environments).
 
 ## Workspace prüfen
 
