@@ -12,7 +12,6 @@ hop-json-object-builder-plugin
 hop-pdal-plugin
 hop-plugin-ci
 hop-plugin-commons
-hop-plugin-doclint-maven-plugin
 hop-plugin-parent
 hop-plugins-site
 hop-pointcloud-type-plugin
