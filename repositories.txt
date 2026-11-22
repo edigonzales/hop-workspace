@@ -13,6 +13,7 @@ hop-pdal-plugin
 hop-plugin-ci
 hop-plugin-commons
 hop-plugin-parent
+hop-plugin-template
 hop-plugins-site
 hop-pointcloud-type-plugin
 hop-python-plugin
