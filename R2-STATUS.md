@@ -162,3 +162,11 @@ P3 bestätigte beide Merge-SHAs auf `main` und lud beide veröffentlichten ZIPs 
 - **GraalPy.** Der registrierte HopGui-Dialog öffnete mit allen vier Tabs und Hilfe-Button. Inline/File, UTF-8-Dateiaktionen, OK und Abbrechen bestanden. Alle sieben Pipeline-Szenarien einschliesslich Geometry-Hand-off bestanden.
 
 Beide PRs dokumentieren `REVIEW_OK` aus der mitgelieferten CLI von OpenCode 2.3.0 mit DeepSeek Flash. Die macOS-Runner der beiden Plugins blieben deaktiviert. Optionale native Python-Erweiterungen lagen ausserhalb der Abnahme.
+
+### Prerelease nach der P3-Abnahme
+
+Am 25. November 2026 veröffentlichte `hop-distributions` den Prerelease `v0.2.1-SNAPSHOT.build.45687647819.1` für Apache Hop 2.19.0. Der Build verwendete `main` auf `14c1183cdfd1b92c66633ff3c7843ffd680425ac` und enthält 16 Maven-ZIPs, darunter INTERLIS `0.1.0-20261125.183657-16` und GraalPy `0.1.0-20261125.192053-6`. [GitHub-Release](https://github.com/edigonzales/hop-distributions/releases/tag/v0.2.1-SNAPSHOT.build.45687647819.1) · [Manifest](https://github.com/edigonzales/hop-distributions/releases/download/v0.2.1-SNAPSHOT.build.45687647819.1/release-metadata.json)
+
+Alle 27 Builder-Tests, die Paketierung, alle sechs installierten E2E-Jobs unter Linux, macOS und Windows mit Java 21 und 25 sowie die Veröffentlichung bestanden. [Release-CI](https://github.com/edigonzales/hop-distributions/actions/runs/45687647819)
+
+Die SHA-256-Prüfsumme des heruntergeladenen ZIPs ist `a362202b67b49e2bd79153502faad02f787716c8f84f923c8c38dd009c198be7`. Sie stimmt mit der Prüfsummendatei, dem Manifest und dem von GitHub ausgewiesenen Wert überein. [ZIP](https://github.com/edigonzales/hop-distributions/releases/download/v0.2.1-SNAPSHOT.build.45687647819.1/apache-hop-client-2.19.0-geo-0.2.1-SNAPSHOT.build.45687647819.1.zip) · [SHA-256-Datei](https://github.com/edigonzales/hop-distributions/releases/download/v0.2.1-SNAPSHOT.build.45687647819.1/apache-hop-client-2.19.0-geo-0.2.1-SNAPSHOT.build.45687647819.1.zip.sha256)
